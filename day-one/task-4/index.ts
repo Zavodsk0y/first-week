@@ -22,9 +22,13 @@ function runLengthEncoding(decodedString: string): string {
 function runLengthDecoding(encodedString: string): string {
     const decodedString: string[] = [];
 
-    for (let i = 0; i < encodedString.length; i++) {
-        decodedString.push(encodedString[i].repeat(+encodedString[i+2]))
-        // Здесь не очень хорошо, ибо забиваются пустые строки, но в оконцовке джоином они подчищаются
+    const matches = encodedString.match(/([A-Za-z])-(\d+)/g);
+
+    if (matches) {
+        for (const match of matches) {
+            const [char, count] = match.split("-");
+            decodedString.push(char.repeat(Number(count)));
+        }
     }
 
     return decodedString.join("");
