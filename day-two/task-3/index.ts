@@ -24,4 +24,4 @@ function createBook(title: string, year: number, author: string): object {
     };
 }
 
-console.log(createBook('sasha', 2004, 'dolboeb'))
+console.log(createBook('Three Musketeers', 1844, 'Aleksandr Dyuma'))
