@@ -14,13 +14,12 @@
 
 function createBook(title: string, year: number, author: string): object {
     // А релевантно ли так в лоб задавать юрлку, вообще хотел поиграться с searchParams.set(), но возникают траблы с типами и распаковкой ключей-значений из объекта
-    const clearURL = new URL(`https://www.someurl.com/preview?title=${title}&year=${year}&author=${author}`)
     return {
         title: title,
         year: year,
         author: author,
         preview: `Название: ${title}, Автор: ${author}, Год: ${year}`,
-        url: clearURL
+        url: new URL(`https://www.someurl.com/preview?title=${title}&year=${year}&author=${author}`)
     };
 }
 
