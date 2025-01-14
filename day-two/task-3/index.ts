@@ -12,15 +12,26 @@
 // url — формируется строка с URL в формате: www.someurl.com/preview?title=[title]&year=[year]&author=[author].
 // Функция возвращает созданный объект.
 
-function createBook(title: string, year: number, author: string): object {
-    // А релевантно ли так в лоб задавать юрлку, вообще хотел поиграться с searchParams.set(), но возникают траблы с типами и распаковкой ключей-значений из объекта
+type SourceData = {
+    title: string,
+    year: number,
+    author: string
+}
+
+function createBook(bookData: SourceData): object {
     return {
-        title: title,
-        year: year,
-        author: author,
-        preview: `Название: ${title}, Автор: ${author}, Год: ${year}`,
-        url: new URL(`https://www.someurl.com/preview?title=${title}&year=${year}&author=${author}`)
+        title: bookData.title,
+        year: bookData.year,
+        author: bookData.author,
+        preview: `Название: ${bookData.title}, Автор: ${bookData.author}, Год: ${bookData.year}`,
+        url: new URL(`https://www.someurl.com/preview?title=${bookData.title}&year=${bookData.year}&author=${bookData.author}`)
     };
 }
 
-console.log(createBook('Three Musketeers', 1844, 'Aleksandr Dyuma'))
+console.log(createBook(
+    {
+        title: 'Three Musketeers',
+        year: 1844,
+        author: 'Aleksandr Dyuma'
+    }
+))
