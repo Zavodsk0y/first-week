@@ -5,14 +5,14 @@
 // Не является undefined,
 // Не является пустой строкой ("").
 
-// объект data
+// объект data. В гите по какой-то причине данные ускакали чуть дальше
 const data = {
-	name: "Alice",
-	age: 25,
-	address: "",
-	phone: undefined,
-	email: "[alice@example.com](<mailto:alice@example.com>)",
-	notes: null,
+    name: "Alice",
+    age: 25,
+    address: "",
+    phone: undefined,
+    email: "[alice@example.com](<mailto:alice@example.com>)",
+    notes: null,
     author: "Aleksandr Dyuma",
     berari: undefined,
     birthOfDate: "24-07-1802",
