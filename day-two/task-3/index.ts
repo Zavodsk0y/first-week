@@ -12,21 +12,30 @@
 // url — формируется строка с URL в формате: www.someurl.com/preview?title=[title]&year=[year]&author=[author].
 // Функция возвращает созданный объект.
 
-type SourceData = {
+interface SourceData {
     title: string,
     year: number,
     author: string
 }
 
-function createBook(bookData: SourceData): object {
+interface TargetData {
+    title: string,
+    year: number,
+    author: string,
+    preview: string,
+    url: object
+}
+
+const createBook = (bookData: SourceData): TargetData =>  {
     return {
         title: bookData.title,
         year: bookData.year,
         author: bookData.author,
         preview: `Название: ${bookData.title}, Автор: ${bookData.author}, Год: ${bookData.year}`,
         url: new URL(`https://www.someurl.com/preview?title=${bookData.title}&year=${bookData.year}&author=${bookData.author}`)
+    }
     };
-}
+
 
 console.log(createBook(
     {
