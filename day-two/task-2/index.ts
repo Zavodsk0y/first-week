@@ -49,6 +49,7 @@ const convertData = (sourceData: SourceData): TargetData => {
         phone: sourceData.contact.phone,
         email: `[${sourceData.contact.email}](<mailto:${sourceData.contact.email}>)`,
         location: `${sourceData.address.city}, ${sourceData.address.zip}`,
+        // Тернарный оператор в этом случае было удобнее использовать, чем вводить отдельное условие для одного статуса
         status: sourceData.is_active ? "active" : "not_active"
     }
 }

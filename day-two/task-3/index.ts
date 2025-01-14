@@ -12,6 +12,7 @@
 // url — формируется строка с URL в формате: www.someurl.com/preview?title=[title]&year=[year]&author=[author].
 // Функция возвращает созданный объект.
 
+// Интерфейсы для типизации
 interface SourceData {
     title: string,
     year: number,
@@ -38,6 +39,7 @@ const createBook = (title: string, year: number, author: string): TargetData => 
         year,
         author,
         preview: `Название: ${title}, Автор: ${author}, Год: ${year}`,
+        // В юрле вообще хотелось бы использовать searchParams.set, а не так в лоб вводя их
         url: new URL(`https://www.someurl.com/preview?title=${title}&year=${year}&author=${author}`)
     }
     };
