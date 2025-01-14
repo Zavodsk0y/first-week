@@ -66,13 +66,13 @@ const users: UsersType = [
     },
 ]
 
-const getUsers = async (delay: number, users: UsersType) => {
+const getUsers = async (users: UsersType) => {
     return new Promise(resolve => {
-        setTimeout(() => resolve(users), delay)
+        setTimeout(() => resolve(users), 3000)
     })
     .then((res) => {
         console.log(res)
     }) 
 }
 
-getUsers(4000, users)
+getUsers(users)
