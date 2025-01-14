@@ -26,9 +26,9 @@ const data = {
 // реализация функции
 const countFilledValues = (obj: Record<string, unknown>) => {
     let counter = 0;
-    for (let key in data) {
+    for (let key in obj) {
         // != одновременно позволит проверить на null & undefined, не прибегая к дополнительному прописыванию строгих сравнений
-        if (data[key] != null && data[key] !== "") {
+        if (obj[key] != null && obj[key] !== "") {
             counter += 1;
         }
     }
