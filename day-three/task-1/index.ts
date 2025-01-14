@@ -15,9 +15,9 @@ const resolvePromise = (delay: number, message: string) => {
     return new Promise(resolve => {
         setTimeout(() => resolve(message), delay)
     })
-    .then((res) => {
-        console.log(res)
-    }) 
+        .then((res) => {
+            console.log(res)
+        })
 }
 
 resolvePromise(3000, "Message")
