@@ -42,15 +42,6 @@ const source: SourceData = {
     is_active: true,
 };
 
-const target: TargetData = {
-    id: "123",
-    name: "John Doe",
-    phone: "+123456789",
-    email: "[john.doe@example.com](<mailto:john.doe@example.com>)",
-    location: "New York, 10001",
-    status: "active",
-};
-
 const convertData = (sourceData: SourceData): TargetData => {
     return {
         id: sourceData.user_id,
