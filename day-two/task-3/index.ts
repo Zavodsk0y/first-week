@@ -26,21 +26,21 @@ interface TargetData {
     url: object
 }
 
-const createBook = (bookData: SourceData): TargetData =>  {
+const source: SourceData = {
+    title: "Harry Potter",
+    year: 1997,
+    author: "J.K. Rowling",
+};
+
+const createBook = (title: string, year: number, author: string): TargetData =>  {
     return {
-        title: bookData.title,
-        year: bookData.year,
-        author: bookData.author,
-        preview: `Название: ${bookData.title}, Автор: ${bookData.author}, Год: ${bookData.year}`,
-        url: new URL(`https://www.someurl.com/preview?title=${bookData.title}&year=${bookData.year}&author=${bookData.author}`)
+        title,
+        year,
+        author,
+        preview: `Название: ${title}, Автор: ${author}, Год: ${year}`,
+        url: new URL(`https://www.someurl.com/preview?title=${title}&year=${year}&author=${author}`)
     }
     };
 
 
-console.log(createBook(
-    {
-        title: 'Three Musketeers',
-        year: 1844,
-        author: 'Aleksandr Dyuma'
-    }
-))
+console.log(createBook(source.title, source.year, source.author))
