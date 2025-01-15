@@ -12,67 +12,56 @@
 // Формат данных:
 // Для тестирования можно использовать любой формат данных(желательно чтоб это был хотя бы массив), например, массив объектов с информацией о пользователях или постах.
 
-// type UUID = string
+type UUID = `${string}-${string}-${string}-${string}-${string}`
 
-// type UsersType = {
-//     id: UUID,
-//     name: string,
-//     phone: string,
-//     email: string,
-//     location: string,
-//     status: "active" | "delete",
-// }[]
+interface UsersType {
+    id: UUID,
+    name: string,
+    phone: string,
+    email: string,
+    location: string,
+    status: "active" | "delete",
+}
 
-const getUsers = async () => {
-    // Были еще и типы сверху вне функции, но мне показалось, что логичнее от них отказаться, ибо мы просто геттим данные с апи
-    const usersData = [
-        {
-            id: "20594add-9139-4e5a-a30d-99fec4420795",
-            name: "Aleksandr",
-            phone: "+79122907183",
-            email: "alex@mail.ru",
-            location: "Tomsk",
-            status: "active"
-        },
-        {
-            id: "c4c396b4-f8e7-4432-b1a5-4be1eb29dbf9",
-            name: "Oleg",
-            phone: "+79124355287",
-            email: "oleg@mail.ru",
-            location: "Tomsk",
-            status: "delete"
-        },
-        {
-            id: "382fbac0-f501-4ba5-a670-298f679856e7",
-            name: "Maria",
-            phone: "+79121754467",
-            email: "maria@mail.ru",
-            location: "Helsinki",
-            status: "active"
-        },
-        {
-            id: "6a509f0b-f667-4580-bd55-7f3894ad1b6d",
-            name: "Egor",
-            phone: "+79124702015",
-            email: "egor@mail.ru",
-            location: "Tomsk",
-            status: "active"
-        },
-        {
-            id: "4d248a61-f8e7-462d-a5a5-8aebe4014368",
-            name: "Pavel",
-            phone: "+79124305099",
-            email: "pavel@mail.ru",
-            location: "Tomsk",
-            status: "delete"
-        },
-    ]
+type IGetDataDto = UsersType[]
+
+const names = [
+    " Betty  ", " Mitchell ", " Guadalupe ", " Patricia ", " Kristi ", " Sydney ", " Kaitlin ", " Jeanne ", " Jamel ", " Warren ",
+    " Beau ", " Orlando ", " Arnulfo ", " Olin ", " Marla ", " Guillermo ", " Lindsey ", " Ida ", " Felipe ", " Derek ",
+    " Arlene ", " Jerry ", " Wilda ", " Phil ", " Brooke ", " Franklin ", " Deidre ", " Eunice ", " Angel ", " Kathrine ",
+]
+
+const generateEmail = (name: string): string => {
+    const id = Math.random().toString().slice(3,5);
+    return `${name}${id}@mail.ru`;
+}
+
+const generateUserData = (): IGetDataDto => {
+    const quantity = Math.floor(Math.random() * 10) + 1;
+    let users: IGetDataDto = [];
+    for (let i = 0; i < quantity; i++) {
+        const randomName = names[Math.floor(Math.random() * names.length)].trim();
+        const randomStatus: "active" | "delete" = Math.random() < 0.5 ? "active" : "delete";
+        users.push({
+                id: self.crypto.randomUUID(),
+                name: randomName,
+                phone: `+${Math.random().toString().slice(2, 11)}`,
+                email: generateEmail(randomName),
+                location: "Tomsk",
+                status: randomStatus
+        })
+    }
+    return users;
+}
+
+const getUsers = async (): Promise<IGetDataDto> => {
+    const usersData = generateUserData();
     return new Promise(resolve => {
         setTimeout(() => resolve(usersData), 5000)
     })
-        .then((res) => {
-            console.log(res)
-        })
 }
 
 getUsers()
+    .then((res) => {
+        console.log(res)
+    })
