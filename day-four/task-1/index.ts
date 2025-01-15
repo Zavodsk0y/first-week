@@ -13,7 +13,21 @@
 // Верните обновленный массив.
 // Оберните вызов функции в try-catch, чтобы обработать потенциальную ошибку.
 
-const usersData = [
+// Протипизировал все отдельно на всякий
+type UUID = `${string}-${string}-${string}-${string}-${string}`
+
+interface UserType {
+    id: UUID,
+    name: string,
+    phone: string,
+    email: string,
+    location: string,
+    isActive: boolean
+}
+
+type UsersDTO = UserType[]
+
+const usersData: UsersDTO = [
     {
         id: "20594add-9139-4e5a-a30d-99fec4420795",
         name: " Aleksandr",
@@ -56,7 +70,7 @@ const usersData = [
     },
 ]
 
-const cleanUserData = async (users: typeof usersData): Promise<Object[] | unknown> => {
+const cleanUserData = async (users: UsersDTO): Promise<UsersDTO | unknown> => {
     try {
         const random = Math.floor(Math.random() * 100) + 1
         if (random <= 10) throw Error("Что-то пошло не так...")
