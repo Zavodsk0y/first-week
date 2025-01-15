@@ -23,8 +23,8 @@ type Choice = "Камень" | "Ножницы" | "Бумага";
 type OutcomeMessage = "Игрок побеждает!" | "Компьютер побеждает!" | "Ничья!";
 
 interface Outcome {
-    choice: Choice,
-    computerChoice: Choice,
+    playersChoice: Choice,
+    computersChoice: Choice,
     message: OutcomeMessage
 }
 
@@ -33,19 +33,19 @@ const makeComputerChoice = (): Choice => {
     return choices[Math.floor(Math.random() * choices.length)]
 }
 
-const rockPaperScissors = (choice: Choice): Outcome => {
-    const computerChoice = makeComputerChoice()
+const rockPaperScissors = (playersChoice: Choice): Outcome => {
+    const computersChoice = makeComputerChoice()
     let message: OutcomeMessage
-    if (computerChoice === choice) message = 'Ничья!'
-    else if (choice === 'Ножницы' && computerChoice === 'Камень' ||
-    choice === 'Камень' && computerChoice === 'Бумага' ||
-    choice === 'Бумага' && computerChoice === 'Ножницы') {
+    if (computersChoice === playersChoice) message = 'Ничья!'
+    else if (playersChoice === 'Ножницы' && computersChoice === 'Камень' ||
+    playersChoice === 'Камень' && computersChoice === 'Бумага' ||
+    playersChoice === 'Бумага' && computersChoice === 'Ножницы') {
         message = 'Компьютер побеждает!'
     }
     else message = 'Игрок побеждает!'
     return {
-        choice,
-        computerChoice,
+        playersChoice,
+        computersChoice,
         message
     }
 
