@@ -23,56 +23,56 @@
 //     status: "active" | "delete",
 // }[]
 
-const users: UsersType = [
-    {
-        id: "20594add-9139-4e5a-a30d-99fec4420795",
-        name: "Aleksandr",
-        phone: "+79122907183",
-        email: "alex@mail.ru",
-        location: "Tomsk",
-        status: "active"
-    },
-    {
-        id: "c4c396b4-f8e7-4432-b1a5-4be1eb29dbf9",
-        name: "Oleg",
-        phone: "+79124355287",
-        email: "oleg@mail.ru",
-        location: "Tomsk",
-        status: "delete"
-    },
-    {
-        id: "382fbac0-f501-4ba5-a670-298f679856e7",
-        name: "Maria",
-        phone: "+79121754467",
-        email: "maria@mail.ru",
-        location: "Helsinki",
-        status: "active"
-    },
-    {
-        id: "6a509f0b-f667-4580-bd55-7f3894ad1b6d",
-        name: "Egor",
-        phone: "+79124702015",
-        email: "egor@mail.ru",
-        location: "Tomsk",
-        status: "active"
-    },
-    {
-        id: "4d248a61-f8e7-462d-a5a5-8aebe4014368",
-        name: "Pavel",
-        phone: "+79124305099",
-        email: "pavel@mail.ru",
-        location: "Tomsk",
-        status: "delete"
-    },
-]
-
-const getUsers = async (users: UsersType) => {
+const getUsers = async () => {
+    // Были еще и типы сверху вне функции, но мне показалось, что логичнее от них отказаться, ибо мы просто геттим данные с апи
+    const usersData = [
+        {
+            id: "20594add-9139-4e5a-a30d-99fec4420795",
+            name: "Aleksandr",
+            phone: "+79122907183",
+            email: "alex@mail.ru",
+            location: "Tomsk",
+            status: "active"
+        },
+        {
+            id: "c4c396b4-f8e7-4432-b1a5-4be1eb29dbf9",
+            name: "Oleg",
+            phone: "+79124355287",
+            email: "oleg@mail.ru",
+            location: "Tomsk",
+            status: "delete"
+        },
+        {
+            id: "382fbac0-f501-4ba5-a670-298f679856e7",
+            name: "Maria",
+            phone: "+79121754467",
+            email: "maria@mail.ru",
+            location: "Helsinki",
+            status: "active"
+        },
+        {
+            id: "6a509f0b-f667-4580-bd55-7f3894ad1b6d",
+            name: "Egor",
+            phone: "+79124702015",
+            email: "egor@mail.ru",
+            location: "Tomsk",
+            status: "active"
+        },
+        {
+            id: "4d248a61-f8e7-462d-a5a5-8aebe4014368",
+            name: "Pavel",
+            phone: "+79124305099",
+            email: "pavel@mail.ru",
+            location: "Tomsk",
+            status: "delete"
+        },
+    ]
     return new Promise(resolve => {
-        setTimeout(() => resolve(users), 3000)
+        setTimeout(() => resolve(usersData), 5000)
     })
         .then((res) => {
             console.log(res)
         })
 }
 
-getUsers(users)
+getUsers()
