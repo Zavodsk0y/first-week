@@ -25,7 +25,7 @@ type OutcomeMessage = "Игрок побеждает!" | "Компьютер п�
 interface Outcome {
     playersChoice: Choice,
     computersChoice: Choice,
-    message: OutcomeMessage
+    outcomeMessage: OutcomeMessage
 }
 
 const makeComputerChoice = (): Choice => {
@@ -37,47 +37,47 @@ const outcomes: Outcome[] = [
     {
         playersChoice: "Ножницы",
         computersChoice: "Ножницы",
-        message: "Ничья!"
+        outcomeMessage: "Ничья!"
     },
     {
         playersChoice: "Ножницы",
         computersChoice: "Камень",
-        message: "Компьютер побеждает!"
+        outcomeMessage: "Компьютер побеждает!"
     },
     {
         playersChoice: "Ножницы",
         computersChoice: "Бумага",
-        message: "Игрок побеждает!"
+        outcomeMessage: "Игрок побеждает!"
     },
     {
         playersChoice: "Камень",
         computersChoice: "Камень",
-        message: "Ничья!"
+        outcomeMessage: "Ничья!"
     },
     {
         playersChoice: "Камень",
         computersChoice: "Ножницы",
-        message: "Игрок побеждает!"
+        outcomeMessage: "Игрок побеждает!"
     },
     {
         playersChoice: "Камень",
         computersChoice: "Бумага",
-        message: "Компьютер побеждает!"
+        outcomeMessage: "Компьютер побеждает!"
     },
     {
         playersChoice: "Бумага",
         computersChoice: "Камень",
-        message: "Игрок побеждает!"
+        outcomeMessage: "Игрок побеждает!"
     },
     {
         playersChoice: "Бумага",
         computersChoice: "Бумага",
-        message: "Ничья!"
+        outcomeMessage: "Ничья!"
     },
     {
         playersChoice: "Бумага",
         computersChoice: "Ножницы",
-        message: "Компьютер побеждает!"
+        outcomeMessage: "Компьютер побеждает!"
     },
 ]
 
