@@ -18,22 +18,22 @@
 // В остальных случаях побеждает компьютер.
 // Вернуть объект с результатом игры, содержащий выборы игрока и компьютера, а также сообщение о победителе.
 
-type Choice = "Камень" | "Ножницы" | "Бумага";
+type ChoiceType = "Камень" | "Ножницы" | "Бумага";
 
-type OutcomeMessage = "Игрок побеждает!" | "Компьютер побеждает!" | "Ничья!"
+type OutcomeMessageType = "Игрок побеждает!" | "Компьютер побеждает!" | "Ничья!"
 
-interface Outcome {
-    playersChoice: Choice,
-    computersChoice: Choice,
-    outcomeMessage: OutcomeMessage
+interface IOutcome {
+    playersChoice: ChoiceType,
+    computersChoice: ChoiceType,
+    outcomeMessage: OutcomeMessageType
 }
 
-const makeComputerChoice = (): Choice => {
-    const choices: Choice[] = ['Камень', 'Ножницы', 'Бумага']
+const makeComputerChoice = (): ChoiceType => {
+    const choices: ChoiceType[] = ['Камень', 'Ножницы', 'Бумага']
     return choices[Math.floor(Math.random() * choices.length)]
 }
 
-const outcomes: Outcome[] = [
+const outcomes: IOutcome[] = [
     {
         playersChoice: "Ножницы",
         computersChoice: "Ножницы",
@@ -81,7 +81,7 @@ const outcomes: Outcome[] = [
     },
 ]
 
-const rockPaperScissors = (choice: Choice): Outcome => {
+const rockPaperScissors = (choice: ChoiceType): IOutcome => {
     const computerChoice = makeComputerChoice()
     let party = {
         playersChoice: choice,
