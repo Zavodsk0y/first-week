@@ -25,7 +25,7 @@ type OutcomeMessage = "Игрок побеждает!" | "Компьютер п�
 interface Outcome {
     playersChoice: Choice,
     computersChoice: Choice,
-    message: OutcomeMessage
+    outcomeMessage: OutcomeMessage
 }
 
 const makeComputerChoice = (): Choice => {
@@ -35,18 +35,18 @@ const makeComputerChoice = (): Choice => {
 
 const rockPaperScissors = (playersChoice: Choice): Outcome => {
     const computersChoice = makeComputerChoice()
-    let message: OutcomeMessage
-    if (computersChoice === playersChoice) message = 'Ничья!'
+    let outcomeMessage: OutcomeMessage
+    if (computersChoice === playersChoice) outcomeMessage = 'Ничья!'
     else if (playersChoice === 'Ножницы' && computersChoice === 'Камень' ||
     playersChoice === 'Камень' && computersChoice === 'Бумага' ||
     playersChoice === 'Бумага' && computersChoice === 'Ножницы') {
-        message = 'Компьютер побеждает!'
+        outcomeMessage = 'Компьютер побеждает!'
     }
-    else message = 'Игрок побеждает!'
+    else outcomeMessage = 'Игрок побеждает!'
     return {
         playersChoice,
         computersChoice,
-        message
+        outcomeMessage
     }
 
 }
