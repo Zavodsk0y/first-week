@@ -95,9 +95,10 @@ const rockPaperScissors = (choice: ChoiceEnum): IOutcome => {
         playersChoice: choice,
         computerChoice: computerChoice,
     }
-    let result = outcomes.filter(outcome => outcome.playersChoice == party.playersChoice && outcome.computersChoice == party.computerChoice);
     
-    return Object.assign({}, ...result)
+    let result = outcomes.find(outcome => outcome.playersChoice == party.playersChoice && outcome.computersChoice == party.computerChoice);
+    
+    return {...result} as IOutcome
 }
 
 console.log(rockPaperScissors(ChoiceEnum.Scissors))
