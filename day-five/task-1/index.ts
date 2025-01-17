@@ -18,78 +18,86 @@
 // В остальных случаях побеждает компьютер.
 // Вернуть объект с результатом игры, содержащий выборы игрока и компьютера, а также сообщение о победителе.
 
-type ChoiceType = "Камень" | "Ножницы" | "Бумага";
-
-type OutcomeMessageType = "Игрок побеждает!" | "Компьютер побеждает!" | "Ничья!"
-
-interface IOutcome {
-    playersChoice: ChoiceType,
-    computersChoice: ChoiceType,
-    outcomeMessage: OutcomeMessageType
+enum ChoiceEnum {
+    Rock = "Камень",
+    Scissors = "Ножницы",
+    Paper = "Бумага"
 }
 
-const makeComputerChoice = (): ChoiceType => {
-    const choices: ChoiceType[] = ['Камень', 'Ножницы', 'Бумага']
+enum OutcomeMessageEnum {
+    ComputersVictory = "Компьютер побеждает!",
+    PlayersVictory = "Игрок побеждает!",
+    Withdraw = "Ничья!"
+}
+
+interface IOutcome {
+    playersChoice: ChoiceEnum,
+    computersChoice: ChoiceEnum,
+    outcomeMessage: OutcomeMessageEnum
+}
+
+const makeComputerChoice = (): ChoiceEnum => {
+    const choices: ChoiceEnum[] = [ChoiceEnum.Rock, ChoiceEnum.Scissors, ChoiceEnum.Paper]
     return choices[Math.floor(Math.random() * choices.length)]
 }
 
 const outcomes: IOutcome[] = [
     {
-        playersChoice: "Ножницы",
-        computersChoice: "Ножницы",
-        outcomeMessage: "Ничья!"
+        playersChoice: ChoiceEnum.Scissors,
+        computersChoice: ChoiceEnum.Scissors,
+        outcomeMessage: OutcomeMessageEnum.Withdraw
     },
     {
-        playersChoice: "Ножницы",
-        computersChoice: "Камень",
-        outcomeMessage: "Компьютер побеждает!"
+        playersChoice: ChoiceEnum.Scissors,
+        computersChoice: ChoiceEnum.Rock,
+        outcomeMessage: OutcomeMessageEnum.ComputersVictory
     },
     {
-        playersChoice: "Ножницы",
-        computersChoice: "Бумага",
-        outcomeMessage: "Игрок побеждает!"
+        playersChoice: ChoiceEnum.Scissors,
+        computersChoice: ChoiceEnum.Paper,
+        outcomeMessage: OutcomeMessageEnum.PlayersVictory
     },
     {
-        playersChoice: "Камень",
-        computersChoice: "Камень",
-        outcomeMessage: "Ничья!"
+        playersChoice: ChoiceEnum.Rock,
+        computersChoice: ChoiceEnum.Rock,
+        outcomeMessage: OutcomeMessageEnum.Withdraw
     },
     {
-        playersChoice: "Камень",
-        computersChoice: "Ножницы",
-        outcomeMessage: "Игрок побеждает!"
+        playersChoice: ChoiceEnum.Rock,
+        computersChoice: ChoiceEnum.Scissors,
+        outcomeMessage: OutcomeMessageEnum.PlayersVictory
     },
     {
-        playersChoice: "Камень",
-        computersChoice: "Бумага",
-        outcomeMessage: "Компьютер побеждает!"
+        playersChoice: ChoiceEnum.Rock,
+        computersChoice: ChoiceEnum.Paper,
+        outcomeMessage: OutcomeMessageEnum.ComputersVictory
     },
     {
-        playersChoice: "Бумага",
-        computersChoice: "Камень",
-        outcomeMessage: "Игрок побеждает!"
+        playersChoice: ChoiceEnum.Paper,
+        computersChoice: ChoiceEnum.Rock,
+        outcomeMessage: OutcomeMessageEnum.PlayersVictory
     },
     {
-        playersChoice: "Бумага",
-        computersChoice: "Бумага",
-        outcomeMessage: "Ничья!"
+        playersChoice: ChoiceEnum.Paper,
+        computersChoice: ChoiceEnum.Paper,
+        outcomeMessage: OutcomeMessageEnum.Withdraw
     },
     {
-        playersChoice: "Бумага",
-        computersChoice: "Ножницы",
-        outcomeMessage: "Компьютер побеждает!"
+        playersChoice: ChoiceEnum.Paper,
+        computersChoice: ChoiceEnum.Scissors,
+        outcomeMessage: OutcomeMessageEnum.ComputersVictory
     },
 ]
 
-const rockPaperScissors = (choice: ChoiceType): IOutcome => {
+const rockPaperScissors = (choice: ChoiceEnum): IOutcome => {
     const computerChoice = makeComputerChoice()
-    let party = {
+    const party = {
         playersChoice: choice,
         computerChoice: computerChoice,
     }
     let result = outcomes.filter(outcome => outcome.playersChoice == party.playersChoice && outcome.computersChoice == party.computerChoice);
-    const outcome = Object.assign({}, ...result)
-    return outcome
+    
+    return Object.assign({}, ...result)
 }
 
-console.log(rockPaperScissors("Ножницы"))
+console.log(rockPaperScissors(ChoiceEnum.Scissors))
