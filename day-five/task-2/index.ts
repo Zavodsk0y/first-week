@@ -15,44 +15,32 @@
 
 type DenominationsType = [100, 50, 10, 5, 2, 1]
 
-interface IExchangeResult {
-    "100": number,
-    "50": number,
-    "10": number,
-    "5": number,
-    "2": number,
-    "1": number
-}
+type ExchangeResultType = Record<DenominationsType[number], number>
 
 const denominations: DenominationsType = [100, 50, 10, 5, 2, 1]
 
-const exchangeOnDenominations = (n: number): IExchangeResult => {
+const exchangeOnDenominations = (n: number): ExchangeResultType => {
     if (n <= 0) {
         throw Error('Не получится разменять долги и ничего...')
     }
-
-    // Объект хотелось бы пустым инициализировать, но текущая типизация ругается, можно переписать на опциональные свойства, но чую, что это не совсем верный подход
-    // Либо существует еще какая-либо запись типа, чтобы можно было объект пустым инициализировать
-    let exchangeResult: IExchangeResult = {
-        "100": 0,
-        "50": 0,
-        "10": 0,
-        "5": 0,
-        "2": 0,
-        "1": 0
+    let exchangeResult: ExchangeResultType = {
+        100: 0,
+        50: 0,
+        10: 0,
+        5: 0,
+        2: 0,
+        1: 0
     }
-
     let interim: number;
-    let denominationKey: keyof IExchangeResult
+    let denominationKey: keyof ExchangeResultType
     for(let denomination of denominations) {
         interim = Math.floor(n / denomination)
         n = n - denomination * interim
-        // Как полагаю, предпочтительнее было бы использовать числовые ключи, вместо доп. преобразований в строку + keyof
-        denominationKey = denomination.toString() as keyof IExchangeResult
+        denominationKey = denomination
         exchangeResult[denominationKey] = interim
     }
 
     return exchangeResult
 }
 
-console.log(exchangeOnDenominations(1179))
+console.log(exchangeOnDenominations(1180))
